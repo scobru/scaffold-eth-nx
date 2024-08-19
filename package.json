@@ -1,10 +1,11 @@
 {
-  "name": "scobru",
-  "version": "0.0.1",
+  "name": "scaffold-eth-nx",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {},
   "dependencies": {
     "@nx/devkit": "19.6.0",
+    "scaffold-eth-nx": "^1.0.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -12,6 +13,7 @@
     "@nx/eslint-plugin": "19.6.0",
     "@nx/jest": "19.6.0",
     "@nx/js": "19.6.0",
+    "@nx/plugin": "19.6.0",
     "@nx/workspace": "19.6.0",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.3.12",
@@ -30,10 +32,29 @@
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.5.2",
-    "verdaccio": "^5.0.4",
-    "@nx/plugin": "19.6.0"
+    "verdaccio": "^5.0.4"
   },
   "type": "commonjs",
   "main": "./src/index.js",
-  "typings": "./src/index.d.ts"
+  "typings": "./src/index.d.ts",
+  "generators": "./generators.json",
+  "description": "<a alt=\"Nx logo\" href=\"https://nx.dev\" target=\"_blank\" rel=\"noreferrer\"><img src=\"https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png\" width=\"45\"></a>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scobru/scaffold-eth-nx.git"
+  },
+  "keywords": [
+    "nx",
+    "dapp",
+    "scaffold-eth",
+    "evm",
+    "monorepo",
+    "scaffodling",
+    "ethereum"
+  ],
+  "author": "scobru",
+  "bugs": {
+    "url": "https://github.com/scobru/scaffold-eth-nx/issues"
+  },
+  "homepage": "https://github.com/scobru/scaffold-eth-nx#readme"
 }
