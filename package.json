@@ -1,11 +1,14 @@
 {
-  "name": "scaffold-eth-nx",
-  "version": "1.0.0",
+  "name": "@scobru/scaffold-eth-nx",
+  "version": "1.0.6-e2e",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "test": "nx test scaffold-eth-nx",
+    "publish": "nx run scaffold-eth-nx-e2e:e2e",
+    "build": "nx build scaffold-eth-nx"
+  },
+  "type": "commonjs",
   "dependencies": {
-    "@nx/devkit": "19.6.0",
-    "scaffold-eth-nx": "^1.0.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -34,7 +37,6 @@
     "typescript": "~5.5.2",
     "verdaccio": "^5.0.4"
   },
-  "type": "commonjs",
   "main": "./src/index.js",
   "typings": "./src/index.d.ts",
   "generators": "./generators.json",
