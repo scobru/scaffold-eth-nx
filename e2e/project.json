@@ -1,9 +1,9 @@
 {
-  "name": "e2e",
+  "name": "scaffold-eth-nx-e2e",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "e2e/src",
-  "implicitDependencies": ["scobru"],
+  "sourceRoot": "scaffold-eth-nx-e2e/src",
+  "implicitDependencies": ["scaffold-eth-nx"],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
@@ -13,9 +13,12 @@
         "runInBand": true
       },
       "dependsOn": ["^build"]
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
+  },
+  "release": {
+    "version": {
+      "preVersionCommand": "npx nx run-many -t build"
+    },
+    "projects": ["scaffold-eth-nx"]
   }
 }

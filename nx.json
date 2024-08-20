@@ -48,6 +48,21 @@
   "release": {
     "version": {
       "preVersionCommand": "npx nx run-many -t build"
+    },
+    "projects": ["scaffold-eth-nx"]
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "eslint:lint"
+      }
+    },
+    {
+      "plugin": "@nx/js",
+      "options": {
+        "targetName": "nx-release-publish"
+      }
     }
-  }
+  ]
 }

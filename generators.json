@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "scaffold-eth": {
+      "factory": "./src/generators/scaffold-eth/generator",
+      "schema": "./src/generators/scaffold-eth/schema.json",
+      "description": "scaffold-eth generator"
+    }
+  }
+}

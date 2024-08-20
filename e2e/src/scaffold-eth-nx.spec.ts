@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 import { join, dirname } from 'path';
 import { mkdirSync, rmSync } from 'fs';
 
-describe('scobru', () => {
+describe('scaffold-eth-nx', () => {
   let projectDirectory: string;
 
   beforeAll(() => {
@@ -10,7 +10,7 @@ describe('scobru', () => {
 
     // The plugin has been built and published to a local registry in the jest globalSetup
     // Install the plugin built with the latest source code into the test repo
-    execSync(`npm install scobru@e2e`, {
+    execSync(`npm install @scobru/scaffold-eth-nx@e2e`, {
       cwd: projectDirectory,
       stdio: 'inherit',
       env: process.env,
@@ -27,7 +27,7 @@ describe('scobru', () => {
 
   it('should be installed', () => {
     // npm ls will fail if the package is not installed properly
-    execSync('npm ls scobru', {
+    execSync('npm ls @scobru/scaffold-eth-nx', {
       cwd: projectDirectory,
       stdio: 'inherit',
     });

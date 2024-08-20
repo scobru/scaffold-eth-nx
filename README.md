@@ -1,21 +1,47 @@
 # Scaffold-Eth NX plugin
 
-## Descrizione
+## Description
 
-Il plugin Scaffold-Eth NX consente di integrare facilmente un'istanza di Scaffold-eth nel tuo monorepo NX. Scaffold-eth è un framework per lo sviluppo di applicazioni decentralizzate (dApp) su Ethereum, che include una serie di strumenti e modelli per accelerare il processo di sviluppo.
+The Scaffold-Eth NX plugin allows you to easily integrate an instance of Scaffold-eth into your NX monorepo. Scaffold-eth is a framework for developing decentralized applications (dApps) on Ethereum, providing a set of tools and templates to accelerate the development process.
 
 ## Installation
 
-In your Nx workspace install from terminal:
+In your NX root dir run:
 
 ```bash
-npm install scaffold-eth-nx
+npm install @scobru/scaffold-eth-nx
 ```
 
 ## Usage
 
-Generate a scaffold-eth instance in "apps" folder:
+In your NX root dir run:
+
+1Generate scaffold-eth packages
 
 ```bash
-nx generate scaffold-eth-nx-plugin:scaffold-eth
+nx generate  @scobru/scaffold-eth-nx:scaffold-eth
+```
+
+Install scaffold-eth running:
+
+```bash
+yarn install-{yourAppName}
+```
+
+Run Hardhat Chain:
+
+```bash
+nx run yourAppName:chain
+```
+
+Run Hardhat Deploy:
+
+```bash
+nx run yourAppName:deploy
+```
+
+Start NextJS App:
+
+```bash
+nx run yourAppName:start
 ```
