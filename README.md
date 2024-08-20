@@ -20,31 +20,31 @@ npm install @scobru/scaffold-eth-nx
 
 In your NX root dir run:
 
-1Generate scaffold-eth packages
+1. Generate scaffold-eth packages
 
 ```bash
 nx generate  @scobru/scaffold-eth-nx:scaffold-eth
 ```
 
-Install scaffold-eth running:
+2. Install scaffold-eth running:
 
 ```bash
 yarn install-{yourAppName}
 ```
 
-Run Hardhat Chain:
+3. Run Hardhat Chain:
 
 ```bash
 nx run yourAppName:chain
 ```
 
-Run Hardhat Deploy:
+4. Run Hardhat Deploy:
 
 ```bash
 nx run yourAppName:deploy
 ```
 
-Start NextJS App:
+5. Start NextJS App:
 
 ```bash
 nx run yourAppName:start
