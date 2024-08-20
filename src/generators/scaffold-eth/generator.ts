@@ -27,12 +27,31 @@ function removeGitDirectory(filePath: string) {
     logger.warn(`Path not found: ${gitPath}`);
   }
 }
+function updateRootPackageJson(tree: Tree, schema: ScaffoldEthGeneratorSchema) {
+  const projectRoot = `packages/${schema.name}`;
 
-function validateSchema(schema: ScaffoldEthGeneratorSchema) {
-  if (!schema.name) {
-    throw new Error('The "name" field is required in the schema.');
+  const packageJsonPath = 'package.json';
+  if (tree.exists(packageJsonPath)) {
+    const packageJson = JSON.parse(tree.read(packageJsonPath).toString());
+
+    packageJson.scripts = packageJson.scripts || {};
+    packageJson.devDependencies = packageJson.devDependencies || {};
+
+    // Aggiungi le dipendenze necessarie
+    packageJson.devDependencies['@nrwl/devkit'] = '^15.0.0';
+    packageJson.devDependencies['@nrwl/workspace'] = '^15.0.0';
+    packageJson.devDependencies['typescript'] = '^4.7.2';
+
+    // Aggiungi lo script per l'installazione delle dipendenze del progetto clonato
+    packageJson.scripts[
+      `install-${schema.name}`
+    ] = `cd ./${projectRoot} && yarn`;
+
+    // Scrivi il package.json aggiornato
+    tree.write(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  } else {
+    throw new Error('No root package.json found.');
   }
-  // Add more validations as needed
 }
 
 export async function scaffoldEthGenerator(
@@ -58,161 +77,161 @@ export async function scaffoldEthGenerator(
     projectType: 'application',
     targets: {
       account: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat account`,
           cwd: projectRoot,
         },
       },
       chain: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat chain`,
           cwd: projectRoot,
         },
       },
       fork: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat fork`,
           cwd: projectRoot,
         },
       },
       deploy: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat deploy`,
           cwd: projectRoot,
         },
       },
       verify: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat verify`,
           cwd: projectRoot,
         },
       },
       hardhatVerify: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat hardhat-verify`,
           cwd: projectRoot,
         },
       },
       compile: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat compile`,
           cwd: projectRoot,
         },
       },
       generate: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat generate`,
           cwd: projectRoot,
         },
       },
       flatten: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat flatten`,
           cwd: projectRoot,
         },
       },
       hardhatLint: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat lint`,
           cwd: projectRoot,
         },
       },
       hardhatLintStaged: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat lint-staged`,
           cwd: projectRoot,
         },
       },
       hardhatFormat: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat format`,
           cwd: projectRoot,
         },
       },
       hardhatTest: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/hardhat test`,
           cwd: projectRoot,
         },
       },
       test: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn hardhat:test`,
           cwd: projectRoot,
         },
       },
       format: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn next:format && yarn hardhat:format`,
           cwd: projectRoot,
         },
       },
       start: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs dev`,
           cwd: projectRoot,
         },
       },
       nextLint: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs lint`,
           cwd: projectRoot,
         },
       },
       nextFormat: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs format`,
           cwd: projectRoot,
         },
       },
       nextCheckTypes: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs check-types`,
           cwd: projectRoot,
         },
       },
       nextBuild: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs build`,
           cwd: projectRoot,
         },
       },
       nextServe: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs serve`,
           cwd: projectRoot,
         },
       },
       vercel: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs vercel`,
           cwd: projectRoot,
         },
       },
       vercelYolo: {
-        executor: '@nrwl/workspace:run-commands',
+        executor: 'nx:run-commands',
         options: {
           command: `yarn workspace @${schema.name}/nextjs vercel:yolo`,
           cwd: projectRoot,
@@ -223,20 +242,7 @@ export async function scaffoldEthGenerator(
   });
 
   // Update the root package.json to add an installation script for the new project
-  const packageJsonPath = 'package.json';
-  if (tree.exists(packageJsonPath)) {
-    const packageJson = JSON.parse(tree.read(packageJsonPath).toString());
-
-    packageJson.scripts = packageJson.scripts || {};
-
-    // Add a new script to install the dependencies for the cloned project
-    packageJson.scripts[
-      `install-${schema.name}`
-    ] = `cd ./${projectRoot} && yarn`;
-
-    // Write the updated package.json back to disk
-    tree.write(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  }
+  updateRootPackageJson(tree, schema);
 
   // Format all modified files
   await formatFiles(tree);
