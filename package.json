@@ -1,6 +1,6 @@
 {
   "name": "@scobru/scaffold-eth-nx",
-  "version": "1.1.11-e2e",
+  "version": "1.1.12-e2e",
   "license": "MIT",
   "scripts": {
     "test": "npx nx test scaffold-eth-nx",
