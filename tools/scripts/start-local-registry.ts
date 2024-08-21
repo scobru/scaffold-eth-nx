@@ -17,7 +17,7 @@ export default async () => {
 
   try {
     await releaseVersion({
-      specifier: '1.1.11',
+      specifier: '1.1.12-e2e',
       stageChanges: true,
       gitCommit: true,
       gitTag: true,
